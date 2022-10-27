@@ -50,7 +50,7 @@ public class GetController {
     }
 
     @GetMapping("/request3")
-    public String getRequestParam3(MemberDto memberDto) {
+    public String getRequestParam3(MemberDto memberDto) {//RestController를 쓰면 아무것도 안쓰면 자동으로 requestBody
         System.out.println(memberDto);
         return "request3 호출 완료 되었습니다";
     }
