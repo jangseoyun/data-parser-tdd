@@ -2,7 +2,7 @@ package com.practice.hellospringboot.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/spring/v1")
+@RequestMapping("/api/spring/v1")
 @RestController
 public class HelloController {
 
@@ -30,4 +30,10 @@ public class HelloController {
         System.out.println("pathVariable");
         return "pathVariable";
     }
+
+    @GetMapping("/request1")
+    public String getRequestParam(@RequestParam String name, @RequestParam String email, @RequestParam String organization) {
+        return String.format(" %s %s %s", name, email, organization);
+    }
+
 }
