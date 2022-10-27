@@ -7,7 +7,7 @@ import java.util.Map;
 
 @RequestMapping("/api/spring/v1")
 @RestController
-public class HelloController {
+public class GetController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
