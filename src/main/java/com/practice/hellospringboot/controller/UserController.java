@@ -17,7 +17,8 @@ public class UserController {
     private final UserDao userDao;
 
     @PostMapping("/add")
-    public String saveUser(UserDto userDto) {
+    public int saveUser(UserDto userDto) {
         log.info("user.controller");
+        return userDao.save(userDto);
     }
 }
