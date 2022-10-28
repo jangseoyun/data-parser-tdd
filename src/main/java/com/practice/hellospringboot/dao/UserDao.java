@@ -1,5 +1,6 @@
 package com.practice.hellospringboot.dao;
 
+import dto.TableInfoDto;
 import dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,6 +50,14 @@ public class UserDao {
             }
         };
        return jdbcTemplate.query("select * from users", rowMapper);
+    }
+
+    public int getCountAll() {
+        return jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
+    }
+
+    public TableInfoDto getTableInfo() {
+        return new TableInfoDto(getCountAll(), findAll());
     }
 
 
