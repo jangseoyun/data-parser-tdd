@@ -16,8 +16,8 @@ import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = UserDao.class)
 @DisplayName("userDao test")
 class UserDaoTest {
 
@@ -35,5 +35,18 @@ class UserDaoTest {
         user3 = new UserDto(3, "yunyun", "1234");
         userDao.deleteAll();
     }
+
+    @Test
+    void addAndGet() throws SQLException {
+        int id = 1;
+        userDao.save(user1);
+        UserDto user = userDao.findById(id);
+        assertEquals("seoyun", user.getName());
+        assertEquals("1234", user.getPassword());
+    }
+
+
+
+
 
 }

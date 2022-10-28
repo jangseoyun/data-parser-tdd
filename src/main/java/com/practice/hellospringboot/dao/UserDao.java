@@ -3,7 +3,11 @@ package com.practice.hellospringboot.dao;
 import dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @RequiredArgsConstructor
 @Component
@@ -17,6 +21,20 @@ public class UserDao {
 
     public int deleteAll() {
         return jdbcTemplate.update("delete from users");
+    }
+
+    public UserDto findById(int id) {
+        RowMapper<UserDto> rowMapper = new RowMapper<>() {
+            @Override
+            public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UserDto getUser = new UserDto(rs.getInt("id")
+                        , rs.getString("name")
+                        , rs.getString("password"));
+                return getUser;
+            }
+        };
+
+        return jdbcTemplate.queryForObject("select * from users where id = ? ", rowMapper, id);
     }
 
 }
