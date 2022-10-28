@@ -6,10 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/user")
@@ -37,5 +36,13 @@ public class UserController {
     public int deleteAll() {
         log.info("user.controller.delete-all");
         return userDao.deleteAll();
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserDto>> getUserAll() {
+        log.info("user.controller.find-all");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userDao.findAll());
     }
 }
