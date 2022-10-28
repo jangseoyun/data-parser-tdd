@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@ExtendWith(SpringExtension.class)
 @DisplayName("userDao test")
 class UserDaoTest {
 
@@ -50,5 +49,16 @@ class UserDaoTest {
     void deleteAll() {
         userDao.save(user1);
         assertEquals(1, userDao.deleteAll());
+    }
+
+    @Test
+    @DisplayName("사용자 전체 리스트 가져오기")
+    void findAll() {
+        userDao.save(user1);
+        userDao.save(user2);
+        userDao.save(user3);
+
+        assertEquals("seoyun", userDao.findById(1).getName());
+        assertEquals("seoseo", userDao.findById(2).getName());
     }
 }
