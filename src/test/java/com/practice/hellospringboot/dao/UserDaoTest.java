@@ -27,7 +27,6 @@ class UserDaoTest {
 
     /*@BeforeEach
     void setup() throws SQLException {
-        userDao = context.getBean("localUserDao", UserDao.class);
         user1 = new User(1, "seoyun", "1234");
         user2 = new User(2, "seoseo", "1234");
         user3 = new User(3, "yunyun", "1234");
