@@ -48,6 +48,7 @@ class UserDaoTest {
     @Test
     @DisplayName("user 데이터 전체 삭제")
     void deleteAll() {
-        userDao.deleteAll();
+        userDao.save(user1);
+        assertEquals(1, userDao.deleteAll());
     }
 }
