@@ -57,7 +57,8 @@ public class UserDao {
     }
 
     public TableInfoDto getTableInfo() {
-        return new TableInfoDto(getCountAll(), findAll());
+        List<UserDto> userAll = findAll();
+        return new TableInfoDto(userAll.size(), userAll);
     }
 
 
