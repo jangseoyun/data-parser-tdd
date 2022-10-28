@@ -61,4 +61,14 @@ class UserDaoTest {
         assertEquals("seoyun", userDao.findById(1).getName());
         assertEquals("seoseo", userDao.findById(2).getName());
     }
+
+    @Test
+    @DisplayName("테이블 전체 카운트 확인")
+    void getCountAll() {
+        userDao.save(user1);
+        userDao.save(user2);
+        userDao.save(user3);
+
+        assertEquals(3, userDao.getCountAll());
+    }
 }
