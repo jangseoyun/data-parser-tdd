@@ -1,6 +1,7 @@
 package com.practice.hellospringboot.controller;
 
 import com.practice.hellospringboot.dao.UserDao;
+import dto.TableInfoDto;
 import dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,11 +39,19 @@ public class UserController {
         return userDao.deleteAll();
     }
 
-    @GetMapping()
+    @GetMapping("/find-all")
     public ResponseEntity<List<UserDto>> getUserAll() {
         log.info("user.controller.find-all");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userDao.findAll());
     }
+
+    @GetMapping("/table-info")
+    public ResponseEntity<TableInfoDto> tableInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userDao.getTableInfo());
+    }
+
 }
