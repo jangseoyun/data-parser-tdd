@@ -54,4 +54,11 @@ public class UserController {
                 .body(userDao.getTableInfo());
     }
 
+    @GetMapping("/find-one/{id}")
+    public ResponseEntity<UserDto> findUserOne(@PathVariable int id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userDao.findById(id));
+    }
+
 }
