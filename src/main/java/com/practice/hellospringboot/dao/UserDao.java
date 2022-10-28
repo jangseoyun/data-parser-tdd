@@ -17,4 +17,8 @@ public class UserDao {
                 , userDto.getId(), userDto.getName(), userDto.getPassword());
     }
 
+    public int deleteAll() {
+        return jdbcTemplate.update("delete from users");
+    }
+
 }
