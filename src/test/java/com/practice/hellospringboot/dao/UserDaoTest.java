@@ -29,7 +29,7 @@ class UserDaoTest {
     UserDto user3;
 
     @BeforeEach
-    void setup() throws SQLException {
+    void setup() {
         user1 = new UserDto(1, "seoyun", "1234");
         user2 = new UserDto(2, "seoseo", "1234");
         user3 = new UserDto(3, "yunyun", "1234");
@@ -38,7 +38,7 @@ class UserDaoTest {
 
     @Test
     @DisplayName("사용자 등록 후 반환")
-    void addAndGet() throws SQLException {
+    void addAndGet() {
         int id = 1;
         userDao.save(user1);
         UserDto user = userDao.findById(id);
