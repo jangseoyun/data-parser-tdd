@@ -37,6 +37,7 @@ class UserDaoTest {
     }
 
     @Test
+    @DisplayName("사용자 등록 후 반환")
     void addAndGet() throws SQLException {
         int id = 1;
         userDao.save(user1);
@@ -44,9 +45,9 @@ class UserDaoTest {
         assertEquals("seoyun", user.getName());
         assertEquals("1234", user.getPassword());
     }
-
-
-
-
-
+    @Test
+    @DisplayName("user 데이터 전체 삭제")
+    void deleteAll() {
+        userDao.deleteAll();
+    }
 }
