@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+
 @Slf4j
 @RequestMapping("/api/v1/get")
 @RestController
@@ -30,7 +31,7 @@ public class GetController {
 
     @GetMapping("/path/{id}")
     public String getIdPath(@PathVariable String id) {
-        log.info("getMapping variable:{}" + id);
+        log.info("getMapping variable:{}", id);
         return "pathVariable";
     }
 
@@ -38,13 +39,13 @@ public class GetController {
     public String getRequestParam(@RequestParam String name
             , @RequestParam String email
             , @RequestParam String organization) {
-        log.info("getMapping parameter ? " + name);
+        log.info("getMapping parameter ? " + name);// +로 할 경우 문자열 연산자를 먼저 실행한 뒤 log를 남기기 떄문에 리소스 낭비
         return String.format(" %s %s %s", name, email, organization);
     }
 
     @GetMapping("/request2")
     public String getRequestParam2(@RequestParam Map<String, String> param) {
-        log.info("getMapping param Map<String, String>" + param);
+        log.info("getMapping param Map<String, String> {}", param);
         param.entrySet().forEach(map -> {
             System.out.printf("key:%s value:%s \n", map.getKey(), map.getValue());
         });
@@ -53,7 +54,7 @@ public class GetController {
 
     @GetMapping("/request3")
     public String getRequestParam3(MemberDto memberDto) {//RestController를 쓰면 아무것도 안쓰면 자동으로 requestBody
-        log.info("getMapping Object 바인딩 MemberDto" + memberDto);
+        log.info("getMapping Object 바인딩 MemberDto {}", memberDto);
         return "request3 호출 완료 되었습니다";
     }
 }
