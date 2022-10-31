@@ -22,7 +22,11 @@ public class ReadLineContext<T>{
         );
         String str;
         while ((str = reader.readLine()) != null) {
-            result.add(parser.parse(str));
+            try {
+                result.add(parser.parse(str));
+            } catch (Exception e) {
+                System.out.printf("에러 파일내용:%s\n", str.substring(0, 20));
+            }
         }
         reader.close();
         return result;
