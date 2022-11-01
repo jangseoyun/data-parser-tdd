@@ -25,22 +25,23 @@ class HospitalParserTest {
     ReadLineContext<Hospital> hospitalReadLineContext;
     @Autowired
     HospitalDao hospitalDao;
+    HospitalParser hp;
 
     @BeforeEach
     void setUp() {
+        hp = new HospitalParser();
         hospitalDao.deleteAll();
     }
 
     @DisplayName("csv 한 줄을 hospital로 잘 만드는지 확인")
     @Test
     void convertToHospital() {
-        HospitalParser hp = new HospitalParser();
         Hospital hospital = hp.parse(line1);
 
         assertEquals(1, hospital.getId()); // col:0
         assertEquals("의원", hospital.getOpenServiceName());//col:1
-        assertEquals(3620000,hospital.getOpenLocalGovernmentCode()); // col: 3
-        assertEquals("PHMA119993620020041100004",hospital.getManagementNumber()); // col:4
+        assertEquals(3620000, hospital.getOpenLocalGovernmentCode()); // col: 3
+        assertEquals("PHMA119993620020041100004", hospital.getManagementNumber()); // col:4
         assertEquals(LocalDateTime.of(1999, 6, 12, 0, 0, 0), hospital.getLicenseDate()); //19990612 //col:5
         assertEquals(1, hospital.getBusinessStatus()); //col:7
         assertEquals(13, hospital.getBusinessStatusCode());//col:9
@@ -73,7 +74,6 @@ class HospitalParserTest {
     @DisplayName("save and getHospitalOne")
     @Test
     void saveAndGetOne() {
-        HospitalParser hp = new HospitalParser();
         Hospital hospital = hp.parse(line1);
 
         assertEquals(1, hospitalDao.save(hospital));
@@ -84,7 +84,6 @@ class HospitalParserTest {
     @DisplayName("테이블 데이터 전체 삭제 확인")
     @Test
     void deleteAllCheck() {
-        HospitalParser hp = new HospitalParser();
         Hospital hospital = hp.parse(line1);
         hospitalDao.save(hospital);
         assertEquals(1, hospitalDao.deleteAll());
@@ -93,7 +92,6 @@ class HospitalParserTest {
     @DisplayName("테이블 전체 카운트 가져오기")
     @Test
     void getCountAll() {
-        HospitalParser hp = new HospitalParser();
         Hospital hospital = hp.parse(line1);
         assertEquals(0, hospitalDao.getCountAll());
 
