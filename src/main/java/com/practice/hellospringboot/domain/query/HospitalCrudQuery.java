@@ -47,9 +47,4 @@ public class HospitalCrudQuery implements CrudQuery {
         return query;
     }
 
-    public String insertAll() {
-        String query = "";
-        return query;
-    }
-
 }
