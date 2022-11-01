@@ -40,4 +40,16 @@ public class HospitalCrudQuery implements CrudQuery {
         return query;
     }
 
+    @Override
+    public String findAll() {
+        String query = "";
+        query = "select * from nation_wide_hospitals limit 500;";
+        return query;
+    }
+
+    public String insertAll() {
+        String query = "";
+        return query;
+    }
+
 }

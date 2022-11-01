@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -60,15 +62,42 @@ class HospitalParserTest {
     @DisplayName("10만건 이상 데이터 파싱 확인")
     @Test
     void parserCheck() throws IOException {
-        String filename = "/Users/seoyun/codeLion/data-search/fulldata_01_01_02_P.csv";
+        String filename = "/Users/seoyun/codeLion/fulldata_01_01_02.tsv";
         List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
-        System.out.println(hospitals.size());
+        System.out.println(hospitals.size() + "건의 데이터 저장");
         assertTrue(hospitals.size() > 1000);
         assertTrue(hospitals.size() > 10000);
 
         for (int i = 0; i < 10; i++) {
             System.out.println(hospitals.get(i).getHospitalName());
         }
+    }
+
+    @DisplayName("batch를 사용하여 111918건의 데이터 insert")
+    @Test
+    void batchInsert() throws IOException {
+        Instant start = Instant.now();
+        String filename = "/Users/seoyun/codeLion/fulldata_01_01_02.tsv";
+        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
+
+        hospitalDao.batchInsert(hospitals);
+
+        assertEquals(111918, hospitalDao.getCountAll());
+        Instant end = Instant.now();
+        System.out.println("실행 소요 시간: " + Duration.between(start, end).toMillis());
+    }
+
+    @DisplayName("batch를 사용하지 않고 111918건의 데이터 insert")
+    @Test
+    void insertAll() throws IOException {
+        String filename = "/Users/seoyun/codeLion/fulldata_01_01_02.tsv";
+        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
+
+        for (Hospital hospital : hospitals) {
+            hospitalDao.save(hospital);
+        }
+
+        assertEquals(111918, hospitalDao.getCountAll());
     }
 
     @DisplayName("save and getHospitalOne")

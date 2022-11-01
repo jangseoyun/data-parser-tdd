@@ -8,4 +8,6 @@ public interface CrudQuery {
     String deleteAll();
 
     String getCountAll();
+
+    String findAll();
 }
