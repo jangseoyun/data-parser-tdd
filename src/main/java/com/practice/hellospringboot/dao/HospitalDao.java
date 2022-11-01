@@ -27,8 +27,6 @@ public class HospitalDao {
         return saveResult;
     }
 
-    //findId, deleteall getcount
-
     /*private int id;/
     private String openServiceName;/
     private int openLocalGovernmentCode;/
@@ -60,6 +58,14 @@ public class HospitalDao {
             }
         };
         return jdbcTemplate.queryForObject(crudQuery.findById(), rowMapper, id);
+    }
+
+    public int deleteAll() {
+        return jdbcTemplate.update(crudQuery.deleteAll());
+    }
+
+    public int getCountAll() {
+        return jdbcTemplate.queryForObject(crudQuery.getCountAll(), Integer.class);
     }
 
 
