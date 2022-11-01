@@ -2,6 +2,7 @@ package com.practice.hellospringboot.domain.parser;
 
 import com.practice.hellospringboot.dao.HospitalDao;
 import com.practice.hellospringboot.domain.Hospital;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ class HospitalParserTest {
     ReadLineContext<Hospital> hospitalReadLineContext;
     @Autowired
     HospitalDao hospitalDao;
+
+    @BeforeEach
+    void setUp() {
+        hospitalDao.deleteAll();
+    }
 
     @DisplayName("csv 한 줄을 hospital로 잘 만드는지 확인")
     @Test
@@ -73,5 +79,25 @@ class HospitalParserTest {
         assertEquals(1, hospitalDao.save(hospital));
         Hospital byId = hospitalDao.findById(1);
         assertEquals("PHMA119993620020041100004", byId.getManagementNumber());
+    }
+
+    @DisplayName("테이블 데이터 전체 삭제 확인")
+    @Test
+    void deleteAllCheck() {
+        HospitalParser hp = new HospitalParser();
+        Hospital hospital = hp.parse(line1);
+        hospitalDao.save(hospital);
+        assertEquals(1, hospitalDao.deleteAll());
+    }
+
+    @DisplayName("테이블 전체 카운트 가져오기")
+    @Test
+    void getCountAll() {
+        HospitalParser hp = new HospitalParser();
+        Hospital hospital = hp.parse(line1);
+        assertEquals(0, hospitalDao.getCountAll());
+
+        hospitalDao.save(hospital);
+        assertEquals(1, hospitalDao.getCountAll());
     }
 }
