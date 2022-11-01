@@ -15,4 +15,29 @@ public class HospitalCrudQuery implements CrudQuery {
                 + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         return query;
     }
+
+    @Override
+    public String findById() {
+        String query = "";
+        query = "select * "
+                + " from nation_wide_hospitals "
+                + " where id = ?;";
+        return query;
+    }
+
+    @Override
+    public String deleteAll() {
+        String query = "";
+        query = "delete from nation_wide_hospitals;";
+        return query;
+    }
+
+    @Override
+    public String getCountAll() {
+        String query = "";
+        query = "select count(*)"
+                + " from nation_wide_hospitals;";
+        return query;
+    }
+
 }
