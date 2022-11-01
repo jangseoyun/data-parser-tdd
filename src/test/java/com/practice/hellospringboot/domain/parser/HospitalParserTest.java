@@ -77,8 +77,25 @@ class HospitalParserTest {
         Hospital hospital = hp.parse(line1);
 
         assertEquals(1, hospitalDao.save(hospital));
-        Hospital byId = hospitalDao.findById(1);
-        assertEquals("PHMA119993620020041100004", byId.getManagementNumber());
+        Hospital findOne = hospitalDao.findById(1);
+
+        assertEquals(1, findOne.getId());
+        assertEquals("의원", findOne.getOpenServiceName());
+        assertEquals(3620000, findOne.getOpenLocalGovernmentCode());
+        assertEquals("PHMA119993620020041100004", findOne.getManagementNumber());
+        assertEquals(LocalDateTime.of(1999, 6, 12, 0, 0, 0), hospital.getLicenseDate()); //19990612 //col:5
+        assertTrue(findOne.getLicenseDate().isEqual(findOne.getLicenseDate()));
+        assertEquals(1, findOne.getBusinessStatus());
+        assertEquals(13, findOne.getBusinessStatusCode());
+        assertEquals("062-515-2875", findOne.getPhone());
+        assertEquals("광주광역시 북구 풍향동 565번지 4호 3층", findOne.getFullAddress());
+        assertEquals("광주광역시 북구 동문대로 24, 3층 (풍향동)", findOne.getRoadNameAddress());
+        assertEquals("효치과의원", findOne.getHospitalName());
+        assertEquals("치과의원", findOne.getBusinessTypeName());
+        assertEquals(1, findOne.getHealthcareProviderCnt());
+        assertEquals(0, findOne.getPatientRoomCnt());
+        assertEquals(0, findOne.getTotalNumberOfBeds());
+        assertEquals(52.29f, findOne.getTotalAreaSize());
     }
 
     @DisplayName("테이블 데이터 전체 삭제 확인")
