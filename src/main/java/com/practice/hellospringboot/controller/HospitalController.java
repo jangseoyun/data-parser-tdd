@@ -29,4 +29,12 @@ public class HospitalController {
         log.info("hospitalDto : {}", hospitalDto);
         return ResponseEntity.status(HttpStatus.OK).body(hospitalDto);
     }
+
+    @GetMapping("/count")
+    public ResponseEntity getCount() {
+        log.info("hospital controller : get-count 요청");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(hospitalDao.getCountAll());
+    }
 }
