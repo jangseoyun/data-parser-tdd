@@ -2,6 +2,7 @@ package com.practice.hellospringboot.domain.parser;
 
 import com.practice.hellospringboot.dao.HospitalDao;
 import com.practice.hellospringboot.domain.Hospital;
+import com.practice.hellospringboot.service.HospitalService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,8 @@ class HospitalParserTest {
 
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext;
+    @Autowired
+    HospitalService hospitalService;
     @Autowired
     HospitalDao hospitalDao;
     HospitalParser hp;
@@ -78,9 +81,8 @@ class HospitalParserTest {
     void batchInsert() throws IOException {
         Instant start = Instant.now();
         String filename = "/Users/seoyun/codeLion/fulldata_01_01_02.tsv";
-        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
 
-        hospitalDao.batchInsert(hospitals);
+        hospitalService.insertLargeHospitalData(filename);
 
         assertEquals(111918, hospitalDao.getCountAll());
         Instant end = Instant.now();
