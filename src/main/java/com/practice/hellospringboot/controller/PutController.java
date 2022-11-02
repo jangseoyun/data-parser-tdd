@@ -3,10 +3,7 @@ package com.practice.hellospringboot.controller;
 import com.practice.hellospringboot.domain.MemberDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/v1/put")
 @RestController
@@ -27,7 +24,12 @@ public class PutController {
     @PutMapping("/member3")
     public ResponseEntity<MemberDto> putRequest3(@RequestBody MemberDto memberDto) {
         return ResponseEntity
-                    .status(HttpStatus.ACCEPTED)
-                    .body(memberDto);
+                .status(HttpStatus.OK)//상태 값 지정 가능
+                .body(memberDto);
     }
+
+    /*@DeleteMapping(value = "/delete/{id}")
+    public String getRequest4(@PathVariable String id) {
+
+    }*/
 }

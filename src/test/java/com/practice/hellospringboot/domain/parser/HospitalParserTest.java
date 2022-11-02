@@ -18,11 +18,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
-@DisplayName("HospitalParserTest")
+/*@SpringBootTest
+@DisplayName("HospitalParserTest")*/
 class HospitalParserTest {
 
-    String line1 = "\"1\",\"의원\",\"01_01_02_P\",\"3620000\",\"PHMA119993620020041100004\",\"19990612\",\"\",\"01\",\"영업/정상\",\"13\",\"영업중\",\"\",\"\",\"\",\"\",\"062-515-2875\",\"\",\"500881\",\"광주광역시 북구 풍향동 565번지 4호 3층\",\"광주광역시 북구 동문대로 24, 3층 (풍향동)\",\"61205\",\"효치과의원\",\"20211115113642\",\"U\",\"2021-11-17 02:40:00.0\",\"치과의원\",\"192630.735112\",\"185314.617632\",\"치과의원\",\"1\",\"0\",\"0\",\"52.29\",\"401\",\"치과\",\"\",\"\",\"\",\"0\",\"0\",\"\",\"\",\"0\",\"\",";
+    /*String line1 = "\"1\",\"의원\",\"01_01_02_P\",\"3620000\",\"PHMA119993620020041100004\",\"19990612\",\"\",\"01\",\"영업/정상\",\"13\",\"영업중\",\"\",\"\",\"\",\"\",\"062-515-2875\",\"\",\"500881\",\"광주광역시 북구 풍향동 565번지 4호 3층\",\"광주광역시 북구 동문대로 24, 3층 (풍향동)\",\"61205\",\"효치과의원\",\"20211115113642\",\"U\",\"2021-11-17 02:40:00.0\",\"치과의원\",\"192630.735112\",\"185314.617632\",\"치과의원\",\"1\",\"0\",\"0\",\"52.29\",\"401\",\"치과\",\"\",\"\",\"\",\"0\",\"0\",\"\",\"\",\"0\",\"\",";
 
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext;
@@ -41,7 +41,7 @@ class HospitalParserTest {
     @DisplayName("csv 한 줄을 hospital로 잘 만드는지 확인")
     @Test
     void convertToHospital() {
-        Hospital hospital = hp.parse(line1);
+        Hospital hospital = new HospitalParser().parse(line1);
 
         assertEquals(1, hospital.getId()); // col:0
         assertEquals("의원", hospital.getOpenServiceName());//col:1
@@ -129,13 +129,13 @@ class HospitalParserTest {
         assertEquals(52.29f, findOne.getTotalAreaSize());
     }
 
-    /*@DisplayName("테이블 데이터 전체 삭제 확인")
+    @DisplayName("테이블 데이터 전체 삭제 확인")
     @Test
     void deleteAllCheck() {
         Hospital hospital = hp.parse(line1);
         hospitalDao.save(hospital);
         assertEquals(1, hospitalDao.deleteAll());
-    }*/
+    }
 
     @DisplayName("테이블 전체 카운트 가져오기")
     @Test
@@ -145,5 +145,5 @@ class HospitalParserTest {
 
         hospitalDao.save(hospital);
         assertEquals(1, hospitalDao.getCountAll());
-    }
+    }*/
 }
