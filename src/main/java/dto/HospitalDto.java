@@ -9,6 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class HospitalDto {
     //1병원 이름, 2주소, 3도로명주소, 4의료진 수, 5병상 수, 6면적
+    //7. 2: 휴업 3: 폐업 13: 영업중
     private int id;
     private String fullAddress;
     private String roadNameAddress;
@@ -16,4 +17,5 @@ public class HospitalDto {
     private int healthcareProviderCnt;
     private int totalNumberOfBeds;
     private float totalAreaSize;
+    private String businessStatusCode;
 }

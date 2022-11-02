@@ -25,7 +25,7 @@ public class HospitalController {
         Hospital getOne = hospitalDao.findById(id);
         log.info("hospital getOne : {}", getOne);
 
-        HospitalDto hospitalDto = HospitalFactory.createHospitalDto(getOne);
+        HospitalDto hospitalDto = new HospitalFactory().createHospitalDto(getOne);
         log.info("hospitalDto : {}", hospitalDto);
         return ResponseEntity.status(HttpStatus.OK).body(hospitalDto);
     }
