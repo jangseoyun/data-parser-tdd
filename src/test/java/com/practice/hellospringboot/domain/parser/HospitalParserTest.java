@@ -35,7 +35,7 @@ class HospitalParserTest {
     @BeforeEach
     void setUp() {
         hp = new HospitalParser();
-        hospitalDao.deleteAll();
+        //hospitalDao.deleteAll();
     }
 
     @DisplayName("csv 한 줄을 hospital로 잘 만드는지 확인")
@@ -129,13 +129,13 @@ class HospitalParserTest {
         assertEquals(52.29f, findOne.getTotalAreaSize());
     }
 
-    @DisplayName("테이블 데이터 전체 삭제 확인")
+    /*@DisplayName("테이블 데이터 전체 삭제 확인")
     @Test
     void deleteAllCheck() {
         Hospital hospital = hp.parse(line1);
         hospitalDao.save(hospital);
         assertEquals(1, hospitalDao.deleteAll());
-    }
+    }*/
 
     @DisplayName("테이블 전체 카운트 가져오기")
     @Test
