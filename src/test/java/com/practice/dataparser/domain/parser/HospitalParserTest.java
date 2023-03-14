@@ -1,8 +1,8 @@
-package com.practice.hellospringboot.domain.parser;
+package com.practice.dataparser.domain.parser;
 
-import com.practice.hellospringboot.dao.HospitalDao;
-import com.practice.hellospringboot.domain.Hospital;
-import com.practice.hellospringboot.service.HospitalService;
+import com.practice.dataparser.dao.HospitalDao;
+import com.practice.dataparser.domain.Hospital;
+import com.practice.dataparser.service.HospitalService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,11 +18,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/*@SpringBootTest
-@DisplayName("HospitalParserTest")*/
+@SpringBootTest
+@DisplayName("HospitalParserTest")
 class HospitalParserTest {
 
-    /*String line1 = "\"1\",\"의원\",\"01_01_02_P\",\"3620000\",\"PHMA119993620020041100004\",\"19990612\",\"\",\"01\",\"영업/정상\",\"13\",\"영업중\",\"\",\"\",\"\",\"\",\"062-515-2875\",\"\",\"500881\",\"광주광역시 북구 풍향동 565번지 4호 3층\",\"광주광역시 북구 동문대로 24, 3층 (풍향동)\",\"61205\",\"효치과의원\",\"20211115113642\",\"U\",\"2021-11-17 02:40:00.0\",\"치과의원\",\"192630.735112\",\"185314.617632\",\"치과의원\",\"1\",\"0\",\"0\",\"52.29\",\"401\",\"치과\",\"\",\"\",\"\",\"0\",\"0\",\"\",\"\",\"0\",\"\",";
+    String line1 = "1\t의원\t01_01_02_P\t3620000\tPHMA119993620020041100004\t19990612\t\t1\t영업/정상\t13\t영업중\t\t\t\t\t062-515-2875\t\t500881\t광주광역시 북구 풍향동 565번지 4호 3층\t\"광주광역시 북구 동문대로 24, 3층 (풍향동)\"\t61205\t효치과의원\t20211115113642\tU\t2021-11-17 02:40:00.0\t치과의원\t192630.735112\t185314.617632\t치과의원\t1\t0\t0\t52.29\t401\t치과\t\t\t\t0\t0\t\t\t0\t\t\t";
 
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext;
@@ -35,13 +35,13 @@ class HospitalParserTest {
     @BeforeEach
     void setUp() {
         hp = new HospitalParser();
-        //hospitalDao.deleteAll();
+        hospitalDao.deleteAll();
     }
 
     @DisplayName("csv 한 줄을 hospital로 잘 만드는지 확인")
     @Test
     void convertToHospital() {
-        Hospital hospital = new HospitalParser().parse(line1);
+        Hospital hospital = hp.parse(line1);
 
         assertEquals(1, hospital.getId()); // col:0
         assertEquals("의원", hospital.getOpenServiceName());//col:1
@@ -145,5 +145,5 @@ class HospitalParserTest {
 
         hospitalDao.save(hospital);
         assertEquals(1, hospitalDao.getCountAll());
-    }*/
+    }
 }
