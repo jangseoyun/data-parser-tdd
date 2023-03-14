@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.domain;
+package com.practice.dataparser.domain;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Hospital {
-    private int id;
+    private Long id;
     private String openServiceName;
     private int openLocalGovernmentCode;
     private String managementNumber;

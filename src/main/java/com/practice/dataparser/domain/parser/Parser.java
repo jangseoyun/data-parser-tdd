@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.domain.parser;
+package com.practice.dataparser.domain.parser;
 
 public interface Parser<T> {
     T parse(String str);

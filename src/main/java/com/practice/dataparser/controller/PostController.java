@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.controller;
+package com.practice.dataparser.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

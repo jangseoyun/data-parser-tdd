@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.dao;
+package com.practice.dataparser.dao;
 
 import dto.TableInfoDto;
 import dto.UserDto;

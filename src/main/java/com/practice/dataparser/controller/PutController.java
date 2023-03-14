@@ -1,6 +1,6 @@
-package com.practice.hellospringboot.controller;
+package com.practice.dataparser.controller;
 
-import com.practice.hellospringboot.domain.MemberDto;
+import com.practice.dataparser.domain.MemberDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

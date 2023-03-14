@@ -1,6 +1,6 @@
-package com.practice.hellospringboot.controller;
+package com.practice.dataparser.controller;
 
-import com.practice.hellospringboot.dao.UserDao;
+import com.practice.dataparser.dao.UserDao;
 import dto.TableInfoDto;
 import dto.UserDto;
 import lombok.RequiredArgsConstructor;

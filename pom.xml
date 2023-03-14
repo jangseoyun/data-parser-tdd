@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.practice</groupId>
-    <artifactId>hello-springboot</artifactId>
+    <artifactId>data-parser-tdd</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hello-springboot</name>
-    <description>hello-springboot</description>
+    <name>data-parser-tdd</name>
+    <description>data-parser-tdd</description>
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>

@@ -1,9 +1,8 @@
-package com.practice.hellospringboot.domain.parser;
+package com.practice.dataparser.domain.parser;
 
-import com.practice.hellospringboot.domain.Hospital;
+import com.practice.dataparser.domain.Hospital;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 public class HospitalParser implements Parser<Hospital>{
 
@@ -29,7 +28,7 @@ public class HospitalParser implements Parser<Hospital>{
         //System.out.println(Arrays.toString(row));
 
         Hospital hospital = new Hospital();
-        hospital.setId(Integer.parseInt(row[0].replace("\"","")));
+        hospital.setId(Long.parseLong(row[0].replace("\"","")));
         hospital.setOpenServiceName(row[1]);
         hospital.setOpenLocalGovernmentCode(Integer.parseInt(row[3]));
         hospital.setManagementNumber(row[4]);

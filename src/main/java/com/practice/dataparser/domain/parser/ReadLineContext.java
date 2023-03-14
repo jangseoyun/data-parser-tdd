@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.domain.parser;
+package com.practice.dataparser.domain.parser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

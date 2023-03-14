@@ -1,10 +1,10 @@
-package com.practice.hellospringboot;
+package com.practice.dataparser;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HelloSpringbootApplicationTests {
+class DataParserApplicationTests {
 
     @Test
     void contextLoads() {

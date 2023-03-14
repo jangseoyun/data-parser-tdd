@@ -1,9 +1,9 @@
-package com.practice.hellospringboot.service;
+package com.practice.dataparser.service;
 
-import com.practice.hellospringboot.dao.HospitalDao;
-import com.practice.hellospringboot.domain.Hospital;
-import com.practice.hellospringboot.domain.HospitalFactory;
-import com.practice.hellospringboot.domain.parser.ReadLineContext;
+import com.practice.dataparser.domain.parser.ReadLineContext;
+import com.practice.dataparser.dao.HospitalDao;
+import com.practice.dataparser.domain.Hospital;
+import com.practice.dataparser.domain.HospitalFactory;
 import dto.HospitalDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +33,7 @@ public class HospitalService {
             List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
             hospitalDao.batchInsert(hospitals);
         } catch (Exception e) {
+            e.printStackTrace();
             log.info("레코드에 문제가 있습니다");
             throw new RuntimeException();
         }

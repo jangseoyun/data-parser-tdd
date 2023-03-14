@@ -1,6 +1,6 @@
-package com.practice.hellospringboot.domain.parser;
+package com.practice.dataparser.domain.parser;
 
-import com.practice.hellospringboot.domain.Hospital;
+import com.practice.dataparser.domain.Hospital;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

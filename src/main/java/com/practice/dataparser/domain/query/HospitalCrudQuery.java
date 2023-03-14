@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.domain.query;
+package com.practice.dataparser.domain.query;
 
 import org.springframework.stereotype.Component;
 

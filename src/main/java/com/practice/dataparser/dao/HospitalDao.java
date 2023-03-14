@@ -1,7 +1,7 @@
-package com.practice.hellospringboot.dao;
+package com.practice.dataparser.dao;
 
-import com.practice.hellospringboot.domain.Hospital;
-import com.practice.hellospringboot.domain.query.CrudQuery;
+import com.practice.dataparser.domain.Hospital;
+import com.practice.dataparser.domain.query.CrudQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,7 +35,7 @@ public class HospitalDao {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 Hospital hospital = hospitalList.get(i);
-                ps.setInt(1, hospital.getId());
+                ps.setLong(1, hospital.getId());
                 ps.setString(2, hospital.getOpenServiceName());
                 ps.setInt(3, hospital.getOpenLocalGovernmentCode());
                 ps.setString(4, hospital.getManagementNumber());
@@ -61,20 +61,7 @@ public class HospitalDao {
     }
 
     public Hospital findById(int id) {
-        RowMapper<Hospital> rowMapper = new RowMapper<>() {
-            @Override
-            public Hospital mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Hospital hospital = new Hospital(
-                        rs.getInt("id"), rs.getString("open_service_name"), rs.getInt("open_local_government_code")
-                        , rs.getString("management_number"), rs.getObject("license_date", LocalDateTime.class)
-                        , rs.getInt("business_status"), rs.getInt("business_status_code"), rs.getString("phone")
-                        , rs.getString("full_address"), rs.getString("road_name_address"), rs.getString("hospital_name")
-                        , rs.getString("business_type_name"), rs.getInt("healthcare_provider_cnt"), rs.getInt("patient_room_cnt")
-                        , rs.getInt("total_number_of_beds"), rs.getFloat("total_area_size"));
-                return hospital;
-            }
-        };
-        return jdbcTemplate.queryForObject(crudQuery.findById(), rowMapper, id);
+        return jdbcTemplate.queryForObject(crudQuery.findById(), getHospitalRowMapper(), id);
     }
 
     public int deleteAll() {
@@ -86,19 +73,24 @@ public class HospitalDao {
     }
 
     public List<Hospital> findAll() {
+        return jdbcTemplate.query(crudQuery.findAll(), getHospitalRowMapper());
+    }
+
+    private RowMapper<Hospital> getHospitalRowMapper() {
         RowMapper<Hospital> rowMapper = new RowMapper<>() {
             @Override
             public Hospital mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new Hospital(
-                        rs.getInt("id"), rs.getString("open_service_name"), rs.getInt("open_local_government_code")
+                Hospital hospital = new Hospital(
+                        rs.getLong("id"), rs.getString("open_service_name"), rs.getInt("open_local_government_code")
                         , rs.getString("management_number"), rs.getObject("license_date", LocalDateTime.class)
                         , rs.getInt("business_status"), rs.getInt("business_status_code"), rs.getString("phone")
                         , rs.getString("full_address"), rs.getString("road_name_address"), rs.getString("hospital_name")
                         , rs.getString("business_type_name"), rs.getInt("healthcare_provider_cnt"), rs.getInt("patient_room_cnt")
                         , rs.getInt("total_number_of_beds"), rs.getFloat("total_area_size"));
+                return hospital;
             }
         };
-        return jdbcTemplate.query(crudQuery.findAll(), rowMapper);
+        return rowMapper;
     }
 
 }

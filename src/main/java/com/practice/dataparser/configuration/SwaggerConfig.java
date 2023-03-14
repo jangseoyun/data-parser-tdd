@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.configuration;
+package com.practice.dataparser.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

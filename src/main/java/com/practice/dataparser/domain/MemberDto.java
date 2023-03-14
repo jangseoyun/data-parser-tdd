@@ -1,4 +1,4 @@
-package com.practice.hellospringboot.domain;
+package com.practice.dataparser.domain;
 
 public class MemberDto {
     private String name;
