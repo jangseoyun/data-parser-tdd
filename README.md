@@ -3,7 +3,7 @@
 > nativeQuery 연습을 위해 Spring JdbcTemplate으로 구현했으며, 이후 기능은 [전국 병원 위치 데이터 기능 구현](https://github.com/jangseoyun/springjpa-mustache-article)를 참고해주세요.
 
 # 클래스 다이어그램
-<img width="1259" alt="image" src="https://user-images.githubusercontent.com/94329274/230709892-62c2be49-ac57-48c3-9ed3-844ed9cd7046.png">
+<img width="1259" alt="image" src="https://user-images.githubusercontent.com/94329274/230710183-b5b40c1e-3383-4060-b45f-6f57ed78e76d.png">
 ---
 
 # 1. 개발 환경
