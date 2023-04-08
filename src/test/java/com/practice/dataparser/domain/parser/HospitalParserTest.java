@@ -92,6 +92,7 @@ class HospitalParserTest {
     @DisplayName("batch를 사용하지 않고 111918건의 데이터 insert")
     @Test
     void insertAll() throws IOException {
+        Instant start = Instant.now();
         String filename = "/Users/seoyun/codeLion/fulldata_01_01_02.tsv";
         List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
 
@@ -100,6 +101,8 @@ class HospitalParserTest {
         }
 
         assertEquals(111918, hospitalDao.getCountAll());
+        Instant end = Instant.now();
+        System.out.println("실행 소요 시간: " + Duration.between(start, end).toMillis());
     }
 
     @DisplayName("save and getHospitalOne")
